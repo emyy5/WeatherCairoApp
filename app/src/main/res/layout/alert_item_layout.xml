@@ -13,7 +13,7 @@
         android:id="@+id/fromTimeAlert"
         android:layout_width="232dp"
         android:layout_height="37dp"
-        android:layout_marginStart="84dp"
+        android:layout_marginStart="96dp"
         android:layout_marginTop="3dp"
         android:layout_marginBottom="3dp"
         android:text="5:00"
@@ -52,7 +52,7 @@
         android:id="@+id/fromDateAlert"
         android:layout_width="215dp"
         android:layout_height="27dp"
-        android:layout_marginStart="84dp"
+        android:layout_marginStart="96dp"
         android:layout_marginTop="3dp"
         android:layout_marginBottom="3dp"
         android:text="10 march"
@@ -89,11 +89,11 @@
         android:id="@+id/imageView5"
         android:layout_width="40dp"
         android:layout_height="42dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="20dp"
         app:layout_constraintEnd_toStartOf="@+id/fromDateAlert"
-        app:layout_constraintHorizontal_bias="0.577"
+        app:layout_constraintHorizontal_bias="0.473"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/fromTimeAlert"
-        app:srcCompat="@drawable/alarm_img" />
+        app:srcCompat="@drawable/alarm_new" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

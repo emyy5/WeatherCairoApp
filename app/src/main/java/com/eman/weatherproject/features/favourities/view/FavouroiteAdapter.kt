@@ -3,7 +3,6 @@ package com.eman.weatherproject.features.favourities.view
 import android.content.Context
 import android.location.Address
 import android.location.Geocoder
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -22,6 +21,8 @@ class FavouroiteAdapter : RecyclerView.Adapter<FavouroiteAdapter.FavoriteViewHol
     private var favAddresses: List<WeatherAddress>
     private var favWeatherList: List<WeatherForecast>
     private var favClick: FavClickInterface
+    //lateinit var removeFav: List<WeatherAddress>
+
 
     constructor(
         context: Context,
@@ -81,12 +82,12 @@ class FavouroiteAdapter : RecyclerView.Adapter<FavouroiteAdapter.FavoriteViewHol
         this.favWeatherList = weatherList
     }
 
+
     inner class FavoriteViewHolder(private val view: View) : RecyclerView.ViewHolder(view) {
         val favConstraint: ConstraintLayout
             get() = view.findViewById(R.id.favConstraint)
         val addressName: TextView
             get() = view.findViewById(R.id.favAddressName)
-        val removeFav: ImageView
-            get() = view.findViewById(R.id.removeFav)
+        val removeFav: ImageView get() = view.findViewById(R.id.removeFav)
     }
 }

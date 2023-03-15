@@ -35,14 +35,14 @@
     <string name="metricDesc">(Temprature: Celsius &amp; Wind speed: meter/sec)</string>
     <string name="standardDesc">(Temprature: Kelvin &amp; Wind speed: meter/sec)</string>
     <string name="imperialDesc">(Temprature: Fahrenheit &amp; Wind speed: miles/hour)</string>
-    <string name="initial_setup">Initial setup</string>
+    <string name="initial_setup">Start</string>
     <string name="ok">OK</string>
     <string name="save">save</string>
     <string name="delete">delete</string>
     <string name="cancel">cancel</string>
     <string name="deleteMsg">you want to delete this item ?</string>
     <string name="saveLocation">you want to save this location ?</string>
-    <string name="initial_setup_desc">What Prefer to access a location weather?</string>
+    <string name="initial_setup_desc">Choose location weather?</string>
     <string name="humidity">Humidity</string>
     <string name="pressure">Pressure</string>
     <string name="wind_speed">Wind speed</string>

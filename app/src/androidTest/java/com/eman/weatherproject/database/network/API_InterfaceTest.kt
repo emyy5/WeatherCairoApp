@@ -12,28 +12,28 @@ import org.junit.runner.RunWith
 @ExperimentalCoroutinesApi
 @RunWith(AndroidJUnit4::class)
 class API_InterfaceTest {
-    lateinit var apiCall : API_Interface
+    lateinit var apiCall: API_Interface
 
     @Before
-    fun setUp(){
-       apiCall = RetrofitHelper.getInstance().create(API_Interface::class.java)
+    fun setUp() {
+        apiCall = RetrofitHelper.getInstance().create(API_Interface::class.java)
     }
 
-@Test
+    @Test
     fun getTheWholeWeather() = runBlocking {
-    //given
-       val latitude= 32.0
-       val longitude=33.0
-    //when
-    val response =apiCall.getTheWholeWeather(
-        lat = latitude,
-        long=longitude,
-        unit = "",
-        exclude = "",
-        lang = "",
-        appid = "375d11598481406538e244d548560243"
-    )
-    assertThat(response, `is`(200))
+        //given
+        val latitude = 32.0
+        val longitude = 33.0
+        //when
+        val response = apiCall.getTheWholeWeather(
+            lat = latitude,
+            long = longitude,
+            unit = "",
+            exclude = "",
+            lang = "",
+            appid = "375d11598481406538e244d548560243"
+        )
+        assertThat(response.code(), `is`(200))
 
-}
+    }
 }

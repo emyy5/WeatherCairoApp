@@ -53,39 +53,5 @@ import org.junit.runner.RunWith
         favouriteViewModel = FavouriteViewModel(repository)
     }
 
-    fun getFavWeatherFromNetwork() {
-    }
 
-    fun getFavWholeWeather() {
-    }
-
-    fun getAllAddresses() {
-    }
-
-    fun getAllWeathersInVM() {
-    }
-
-    fun addAddressToFavorites() {
-    }
-
-    fun removeAddressFromFavorites() {
-    }
-
-    fun getOneWeather() {
-    }
-
-    fun addOneFavWeather() {
-    }
-
-    fun removeOneFavWeather() {
-    }
-
-    fun updateWeatherDatabase() {
-    }
-
-    fun setSettingsSharedPrefs() {
-    }
-
-    fun getStoredSettings() {
-    }
 }

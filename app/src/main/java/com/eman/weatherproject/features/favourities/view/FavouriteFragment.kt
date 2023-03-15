@@ -58,20 +58,16 @@ var connectivity: ConnectivityManager?=null
         }
     }
 
+
     override fun onRemoveBtnClick(address: WeatherAddress, weather: WeatherForecast) {
-        val dialogBuilder = AlertDialog.Builder(requireContext())
+        val dialogBuilder = androidx.appcompat.app.AlertDialog.Builder(requireContext())
         dialogBuilder.setMessage(getString(R.string.deleteMsg))
             .setCancelable(false)
             .setPositiveButton(getString(R.string.delete)) { dialog, id ->
-                lifecycleScope.launch(Dispatchers.IO) {
-                    // favouriteViewModel.removeAddressFromFavorites(address)
-                    favouriteViewModel.removeOneFavWeather(weather)
-                    withContext(Dispatchers.Main) {
-                        dialog.cancel()
-                    }
-                }
+                favouriteViewModel.removeAddressFromFavorites(address)
+                favouriteViewModel.removeOneFavWeather(weather)
+                dialog.cancel()
             }
-
             .setNegativeButton(getString(R.string.cancel)) { dialog, id -> dialog.cancel() }
         val alert = dialogBuilder.create()
         alert.show()
