@@ -30,7 +30,7 @@ class AlertManager(private var context: Context) {
 
     private val TAG = "commonnn"
 
-    fun fireAlert(alert: AlertData) {
+    fun alertFire(alert: AlertData) {
 
         val unixTime = alert.startDT.toLong()
 

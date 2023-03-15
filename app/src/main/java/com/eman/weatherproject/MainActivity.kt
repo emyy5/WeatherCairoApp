@@ -1,7 +1,6 @@
 package com.eman.weatherproject
 
 import android.os.Bundle
-import android.util.Log
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
@@ -68,7 +67,7 @@ class MainActivity : AppCompatActivity() {
                 alertViewModel.getAllAlertInViewModel().observe(this@MainActivity) { it ->
                     it.forEach {
 
-                        alertsManager.fireAlert(it)
+                        alertsManager.alertFire(it)
                     }
                 }
 

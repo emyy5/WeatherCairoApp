@@ -19,11 +19,7 @@ class RemoteSource: RemoteSourceInterface {
         unit: String,
         lang: String
     ): WeatherForecast {
-//
-//        Log.d(TAG, "getCurrentWeatherWithLocation lat: $lat")
-//        Log.d(TAG, "getCurrentWeatherWithLocation long: $long")
-//        Log.d(TAG, "getCurrentWeatherWithLocation unit: $unit")
-//        Log.d(TAG, "getCurrentWeatherWithLocation lang: $lang")
+
        val apiService= RetrofitHelper.getInstance().create(API_Interface::class.java)
 
         val apiResponse = apiService.getTheWholeWeather(lat, long, unit, "minutely", lang,
