@@ -1,13 +1,10 @@
 package com.eman.weatherproject
 
-import android.util.Log
 import com.eman.weatherproject.database.model.WeatherForecast
 import com.eman.weatherproject.database.network.API_Interface
 import com.eman.weatherproject.database.network.RemoteSourceInterface
 import com.eman.weatherproject.database.network.RetrofitHelper
-import kotlinx.coroutines.coroutineScope
-import kotlinx.coroutines.flow.flow
-import retrofit2.create
+
 
 private const val TAG = "RemoteSource"
 class RemoteSource: RemoteSourceInterface {
