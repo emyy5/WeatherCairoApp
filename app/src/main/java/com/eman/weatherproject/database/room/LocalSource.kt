@@ -5,6 +5,7 @@ import androidx.lifecycle.LiveData
 import com.eman.weatherproject.database.model.AlertData
 import com.eman.weatherproject.database.model.WeatherAddress
 import com.eman.weatherproject.database.model.WeatherForecast
+import kotlinx.coroutines.flow.Flow
 
 
 class LocalSource(context: Context): LocalSourceInterface {
@@ -30,7 +31,7 @@ class LocalSource(context: Context): LocalSourceInterface {
         }
     }
 
-    override fun getMyAllAddress(): LiveData<List<WeatherAddress>> {
+    override fun getMyAllAddress(): Flow<List<WeatherAddress>> {
         return addressDao.getAllFav()
     }
 
@@ -42,11 +43,11 @@ class LocalSource(context: Context): LocalSourceInterface {
         addressDao.deleteFavAddress(address)
     }
 
-    override fun getAllWeathersStored(): LiveData<List<WeatherForecast>> {
+    override fun getAllWeathersStored(): Flow<List<WeatherForecast>> {
         return weatherDao.myAllWeather()
     }
 
-    override fun getWeatherWithLatLong(lat: Double, long: Double): LiveData<WeatherForecast> {
+    override fun getWeatherWithLatLong(lat: Double, long: Double): Flow<WeatherForecast> {
         return weatherDao.weatherWithLatAndLong(lat,long)
     }
 

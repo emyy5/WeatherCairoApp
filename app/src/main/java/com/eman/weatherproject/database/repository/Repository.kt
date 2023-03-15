@@ -13,8 +13,7 @@ import com.eman.weatherproject.utilities.CURRENT_WEATHER
 import com.eman.weatherproject.utilities.MyLanguage
 import com.eman.weatherproject.utilities.SAVING_SETTINGS_IN_SHARED_PREFERENCES
 import com.google.gson.Gson
-
-
+import kotlinx.coroutines.flow.Flow
 
 
 class Repository(var remoteSource: RemoteSourceInterface, var localSource: LocalSourceInterface,
@@ -48,15 +47,15 @@ class Repository(var remoteSource: RemoteSourceInterface, var localSource: Local
     }
 
 
-    override val storedAddresses: LiveData<List<WeatherAddress>>
+    override val storedAddresses: Flow<List<WeatherAddress>>
         get() = localSource.getMyAllAddress()
 
 
-    override fun getAllWeathersInRepo(): LiveData<List<WeatherForecast>> {
+    override fun getAllWeathersInRepo(): Flow<List<WeatherForecast>> {
         return localSource.getAllWeathersStored()
     }
 
-    override fun getMyWeatherOne(lat: Double, long: Double): LiveData<WeatherForecast> {
+    override fun getMyWeatherOne(lat: Double, long: Double): Flow<WeatherForecast> {
         return localSource.getWeatherWithLatLong(lat,long)
     }
 

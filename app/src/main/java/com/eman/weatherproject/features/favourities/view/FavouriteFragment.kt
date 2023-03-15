@@ -17,6 +17,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.eman.weatherproject.ApiState
 import com.eman.weatherproject.R
 import com.eman.weatherproject.RemoteSource
 import com.eman.weatherproject.database.model.WeatherAddress
@@ -29,26 +30,31 @@ import com.eman.weatherproject.features.favourities.viewmodel.FavoriteViewModelF
 import com.eman.weatherproject.features.favourities.viewmodel.FavouriteViewModel
 import com.eman.weatherproject.utilities.SHARED_PREFERENCES
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 
 class FavouriteFragment : Fragment(), FavClickInterface {
 
-private lateinit var navController: NavController
-private lateinit var favouroiteAdapter: FavouroiteAdapter
-private lateinit var layoutManager: LinearLayoutManager
-private lateinit var favouriteViewModel: FavouriteViewModel
-private lateinit var favouriteViewModelFactory: FavoriteViewModelFactory
-private lateinit var binding: FragmentFavouriteBinding
-var connectivity: ConnectivityManager?=null
-    var info: NetworkInfo?=null
+    private lateinit var navController: NavController
+    private lateinit var favouroiteAdapter: FavouroiteAdapter
+    private lateinit var layoutManager: LinearLayoutManager
+    private lateinit var favouriteViewModel: FavouriteViewModel
+    private lateinit var favouriteViewModelFactory: FavoriteViewModelFactory
+    private lateinit var binding: FragmentFavouriteBinding
+    var connectivity: ConnectivityManager? = null
+    var info: NetworkInfo? = null
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         return inflater.inflate(R.layout.fragment_favourite, container, false)
     }
 
-    fun addBtn(){
+    fun addBtn() {
         binding.floatingAddFav.setOnClickListener {
             val action =
                 FavouriteFragmentDirections.actionFavouriteFragmentToMapFragment(
@@ -57,7 +63,6 @@ var connectivity: ConnectivityManager?=null
             navController.navigate(action)
         }
     }
-
 
 
     override fun onRemoveBtnClick(address: WeatherAddress, weather: WeatherForecast) {
@@ -76,30 +81,40 @@ var connectivity: ConnectivityManager?=null
 
     override fun onFavItemClick(address: WeatherAddress) {
 
-        favouriteViewModel.getOneWeather(address.lat,address.lon).observe(viewLifecycleOwner) {
-            if(it == null){
-                Log.i("TAG", "No Weatherrr to vi")
-            }
+        lifecycleScope.launch {
+            favouriteViewModel.getOneWeather(address.lat, address.lon).collect {
+                if (it == null) {
+                    Log.i("TAG", "No Weatherrr to vi")
+                }
 
-            if(navController.currentDestination?.id == R.id.favouriteFragment) {
-                val action = FavouriteFragmentDirections.actionFavouriteFragmentToFavouriteDetailsFragment(it)
-                navController.navigate(action)
+                if (navController.currentDestination?.id == R.id.favouriteFragment) {
+                    val action =
+                        FavouriteFragmentDirections.actionFavouriteFragmentToFavouriteDetailsFragment(it)
+                    navController.navigate(action)
+                }
             }
         }
+
     }
 
-    private fun updateWeatherDatabase(){
 
-        val observerName1 = Observer<List<WeatherAddress>> {
-            for (favWeather in it){
-                favouriteViewModel.getFavWholeWeather(favWeather.lat,favWeather.lon,"metric")
+    private fun updateWeatherDatabase() {
 
-                val observerName2 = Observer<WeatherForecast> { item ->
-                    favouriteViewModel.addOneFavWeather(item) }
-                favouriteViewModel.favWeatherFromNetwork.observe(viewLifecycleOwner,observerName2)
+        lifecycleScope.launch {
+            favouriteViewModel.getAllAddresses().collect {
+                for (favWeather in it) {
+                    favouriteViewModel.getFavWholeWeather(favWeather.lat, favWeather.lon, "metric")
+
+                    val observerName2 = Observer<WeatherForecast> { item ->
+                        favouriteViewModel.addOneFavWeather(item)
+                    }
+                    favouriteViewModel.favWeatherFromNetwork.observe(
+                        viewLifecycleOwner,
+                        observerName2
+                    )
+                }
             }
         }
-        favouriteViewModel.getAllAddresses().observe(viewLifecycleOwner, observerName1)
 
     }
 
@@ -116,7 +131,8 @@ var connectivity: ConnectivityManager?=null
             )
         )
 
-        favouriteViewModel = ViewModelProvider(this, favouriteViewModelFactory)[FavouriteViewModel::class.java]
+        favouriteViewModel =
+            ViewModelProvider(this, favouriteViewModelFactory)[FavouriteViewModel::class.java]
         setupFavRecycler()
         addBtn()
 
@@ -137,21 +153,31 @@ var connectivity: ConnectivityManager?=null
             }
         }
 
-        val addressObserver = Observer<List<WeatherAddress>> {
-            if(it != null){
-                favouroiteAdapter.setFavAddressesList(it)
+        lifecycleScope.launch {
+            favouriteViewModel.getAllAddresses().collect {
+                if (it != null) {
+                    favouroiteAdapter.setFavAddressesList(it)
+                }
+                favouroiteAdapter.notifyDataSetChanged()
             }
-            favouroiteAdapter.notifyDataSetChanged()
         }
-        favouriteViewModel.getAllAddresses().observe(viewLifecycleOwner,addressObserver)
 
         val weatherObserver = Observer<List<WeatherForecast>> {
-            if(it != null) {
+            if (it != null) {
                 favouroiteAdapter.setFavWeatherList(it)
             }
             favouroiteAdapter.notifyDataSetChanged()
         }
-        favouriteViewModel.getAllWeathersInVM().observe(viewLifecycleOwner,weatherObserver)
+
+
+        lifecycleScope.launch {
+            favouriteViewModel.getAllWeathersInVM().collect {
+                if (it != null) {
+                    favouroiteAdapter.setFavWeatherList(it)
+                }
+                favouroiteAdapter.notifyDataSetChanged()
+            }
+        }
 
         binding.floatingAddFav.setOnClickListener {
             val action = FavouriteFragmentDirections.actionFavouriteFragmentToMapFragment(false)
@@ -160,8 +186,8 @@ var connectivity: ConnectivityManager?=null
     }
 
 
-    fun setupFavRecycler(){
-        favouroiteAdapter = FavouroiteAdapter(requireContext(), emptyList(),emptyList(),this)
+    fun setupFavRecycler() {
+        favouroiteAdapter = FavouroiteAdapter(requireContext(), emptyList(), emptyList(), this)
         layoutManager = LinearLayoutManager(requireContext())
         binding.favoriteRecycler.adapter = favouroiteAdapter
         binding.favoriteRecycler.layoutManager = layoutManager

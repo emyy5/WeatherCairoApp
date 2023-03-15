@@ -5,6 +5,7 @@ import com.eman.weatherproject.database.model.AlertData
 import com.eman.weatherproject.database.model.Settings
 import com.eman.weatherproject.database.model.WeatherAddress
 import com.eman.weatherproject.database.model.WeatherForecast
+import kotlinx.coroutines.flow.Flow
 
 interface RepositoryInterface {
     suspend fun getCurrentWetherInRepo(
@@ -15,10 +16,10 @@ interface RepositoryInterface {
 
 
 
-    val storedAddresses: LiveData<List<WeatherAddress>>
+    val storedAddresses: Flow<List<WeatherAddress>>
 
-    fun getAllWeathersInRepo(): LiveData<List<WeatherForecast>>
-    fun getMyWeatherOne(lat: Double, long: Double): LiveData<WeatherForecast>
+    fun getAllWeathersInRepo(): Flow<List<WeatherForecast>>
+    fun getMyWeatherOne(lat: Double, long: Double): Flow<WeatherForecast>
 
     fun insertFavoriteAddress(address: WeatherAddress)
     fun deleteFavoriteAddress(address: WeatherAddress)

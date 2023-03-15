@@ -6,6 +6,8 @@ import com.eman.weatherproject.database.model.WeatherAddress
 import com.eman.weatherproject.database.model.WeatherForecast
 import com.eman.weatherproject.database.repository.RepositoryInterface
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 
@@ -21,12 +23,13 @@ class FavouriteViewModel(private val repo: RepositoryInterface): ViewModel() {
         }
     }
 
+
     //Database
-    fun getAllAddresses(): LiveData<List<WeatherAddress>> {
+    fun getAllAddresses(): Flow<List<WeatherAddress>> {
         return repo.storedAddresses
     }
 
-    fun getAllWeathersInVM(): LiveData<List<WeatherForecast>> {
+    fun getAllWeathersInVM(): Flow<List<WeatherForecast>> {
         return repo.getAllWeathersInRepo()
     }
 
@@ -43,7 +46,9 @@ class FavouriteViewModel(private val repo: RepositoryInterface): ViewModel() {
         }
     }
 
-    fun getOneWeather(lat:Double,long:Double): LiveData<WeatherForecast> {
+
+
+    fun getOneWeather(lat:Double,long:Double): Flow<WeatherForecast> {
         return repo.getMyWeatherOne(lat,long)
     }
 
@@ -61,14 +66,17 @@ class FavouriteViewModel(private val repo: RepositoryInterface): ViewModel() {
 
 
     fun updateWeatherDatabase(owner: LifecycleOwner){
-        getAllAddresses().observe(owner){
-            for (favWeather in it){
-                getFavWholeWeather(favWeather.lat,favWeather.lon,"metric")
-                favWeatherFromNetwork.observe(owner) {item ->
-                    addOneFavWeather(item)
+        viewModelScope.launch {
+            getAllAddresses().collect{
+                for (favWeather in it){
+                    getFavWholeWeather(favWeather.lat,favWeather.lon,"metric")
+                    favWeatherFromNetwork.observe(owner) {item ->
+                        addOneFavWeather(item)
+                    }
                 }
             }
         }
+
     }
 
     fun setSettingsSharedPrefs(settings: Settings){
