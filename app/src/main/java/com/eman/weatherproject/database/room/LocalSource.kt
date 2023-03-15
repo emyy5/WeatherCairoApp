@@ -59,7 +59,7 @@ class LocalSource(context: Context): LocalSourceInterface {
         weatherDao.deleteWeather(weather)
     }
 
-    override fun getAllStoredAlerts(): LiveData<List<AlertData>> {
+    override fun getAllStoredAlerts(): Flow<List<AlertData>> {
         val test  = alertsDao.storedAllAlert()
         return test
 

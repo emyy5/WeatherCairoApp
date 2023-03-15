@@ -107,7 +107,7 @@ class Repository(var remoteSource: RemoteSourceInterface, var localSource: Local
     }
 
 
-    override fun getAllAlert():LiveData<List<AlertData>> {
+    override fun getAllAlert():Flow<List<AlertData>> {
       return  localSource.getAllStoredAlerts()
     }
 

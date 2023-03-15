@@ -38,6 +38,7 @@ import com.eman.weatherproject.utilities.Converters
 import com.eman.weatherproject.utilities.LocaleHelper
 import com.eman.weatherproject.utilities.SHARED_PREFERENCES
 import kotlinx.coroutines.*
+import kotlinx.coroutines.flow.collect
 import java.util.*
 
 
@@ -306,10 +307,13 @@ class AlertsFragment : Fragment(),AlertListenerInterface {
             adapter = alertsAdapter
         }
 
-        //get all alertFrom Repo
-        viewModel.getAllAlertInViewModel().observe(viewLifecycleOwner) {
-            alertsAdapter.submitList(it)
+        lifecycleScope.launch {
+            viewModel.getAllAlertInViewModel().collect {
+                alertsAdapter.submitList(it)
+            }
         }
+        //get all alertFrom Repo
+
 
 
 

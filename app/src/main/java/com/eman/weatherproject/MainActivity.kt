@@ -18,6 +18,7 @@ import com.eman.weatherproject.features.alert.viewmodel.AlertViewModel
 import com.eman.weatherproject.features.alert.viewmodel.AlertViewModelFactory
 import com.eman.weatherproject.utilities.SHARED_PREFERENCES
 import com.google.android.material.navigation.NavigationView
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
@@ -64,12 +65,13 @@ class MainActivity : AppCompatActivity() {
         val alertsManager = AlertManager(this)
         lifecycleScope.launch {
 
-                alertViewModel.getAllAlertInViewModel().observe(this@MainActivity) { it ->
-                    it.forEach {
+            alertViewModel.getAllAlertInViewModel().collect{
+                it.forEach {
 
-                        alertsManager.alertFire(it)
-                    }
+                    alertsManager.alertFire(it)
                 }
+            }
+
 
         }
     }

@@ -20,7 +20,7 @@ interface LocalSourceInterface {
     fun deleteWeather(weather: WeatherForecast)
 
 
-    fun getAllStoredAlerts():LiveData<List<AlertData>>
+    fun getAllStoredAlerts():Flow<List<AlertData>>
     fun insertAlert(alert: AlertData)
     fun deleteAlert(alert: AlertData)
 }

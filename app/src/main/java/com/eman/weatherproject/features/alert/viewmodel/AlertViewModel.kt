@@ -7,6 +7,7 @@ import com.eman.weatherproject.ApiStateAlert
 import com.eman.weatherproject.database.model.AlertData
 import com.eman.weatherproject.database.repository.RepositoryInterface
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
@@ -16,7 +17,7 @@ class AlertViewModel (private val repo: RepositoryInterface): ViewModel() {
   private  var stateOfAlert :MutableStateFlow<ApiStateAlert?> = MutableStateFlow(null)
     val alertState: StateFlow<ApiStateAlert?> =stateOfAlert
 
-    fun getAllAlertInViewModel():LiveData<List<AlertData>> {
+    fun getAllAlertInViewModel():Flow<List<AlertData>> {
        return repo.getAllAlert()
     }
 

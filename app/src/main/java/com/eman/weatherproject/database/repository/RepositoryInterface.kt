@@ -33,7 +33,7 @@ interface RepositoryInterface {
     fun addWeatherToSP(weather: WeatherForecast)
     fun getWeatherToSP(): WeatherForecast?
 
-   fun getAllAlert():LiveData<List<AlertData>>
+   fun getAllAlert():Flow<List<AlertData>>
    fun insertMyAlert(alert: AlertData)
    fun deleteMyAlert(alert: AlertData)
 }
