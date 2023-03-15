@@ -27,6 +27,15 @@ class RemoteSource: RemoteSourceInterface {
 
         return apiResponse.body() as WeatherForecast
     }
+
+
+    companion object {
+        private var instance: RemoteSource? = null
+        fun getInstance(): RemoteSource {
+            return instance ?: RemoteSource()
+        }
+    }
+}
 //
 //   fun getCurrentWeatherWithLocationInRepoFlow(
 //        lat: Double,
@@ -49,12 +58,4 @@ class RemoteSource: RemoteSourceInterface {
 //            emit(MyCurrentWeather)
 //        }
 
-    //}
-
-    companion object {
-        private var instance: RemoteSource? = null
-        fun getInstance(): RemoteSource {
-            return instance ?: RemoteSource()
-        }
-    }
-}
+//}

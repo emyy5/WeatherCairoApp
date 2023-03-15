@@ -21,7 +21,7 @@ class FavouroiteAdapter : RecyclerView.Adapter<FavouroiteAdapter.FavoriteViewHol
     private var favAddresses: List<WeatherAddress>
     private var favWeatherList: List<WeatherForecast>
     private var favClick: FavClickInterface
-    //lateinit var removeFav: List<WeatherAddress>
+    lateinit var removeFav: (WeatherAddress)
 
 
     constructor(
@@ -49,12 +49,14 @@ class FavouroiteAdapter : RecyclerView.Adapter<FavouroiteAdapter.FavoriteViewHol
         val address = favAddresses[position]
         holder.addressName.text =getAddressEnglish(context,favAddresses[position].lat,favAddresses[position].lon)
         holder.removeFav.setOnClickListener {
-            if (favWeatherList.size<=position)
+            if (favAddresses.size<=position)
                  favClick.onRemoveBtnClick(address, favWeatherList[position])
+
         }
         holder.favConstraint.setOnClickListener {
             favClick.onFavItemClick(address)
         }
+
     }
 
     override fun getItemCount(): Int {
@@ -88,6 +90,8 @@ class FavouroiteAdapter : RecyclerView.Adapter<FavouroiteAdapter.FavoriteViewHol
             get() = view.findViewById(R.id.favConstraint)
         val addressName: TextView
             get() = view.findViewById(R.id.favAddressName)
-        val removeFav: ImageView get() = view.findViewById(R.id.removeFav)
+         val removeFav: ImageView get() = view.findViewById(R.id.removeFav)
+
+
     }
 }

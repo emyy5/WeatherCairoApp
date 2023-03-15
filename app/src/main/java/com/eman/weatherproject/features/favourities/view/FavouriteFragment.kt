@@ -59,6 +59,7 @@ var connectivity: ConnectivityManager?=null
     }
 
 
+
     override fun onRemoveBtnClick(address: WeatherAddress, weather: WeatherForecast) {
         val dialogBuilder = androidx.appcompat.app.AlertDialog.Builder(requireContext())
         dialogBuilder.setMessage(getString(R.string.deleteMsg))

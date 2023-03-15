@@ -7,7 +7,9 @@ import com.eman.weatherproject.database.model.CurrentWeather
 import com.eman.weatherproject.database.model.WeatherAddress
 import com.eman.weatherproject.database.model.WeatherForecast
 import com.eman.weatherproject.database.repository.RepositoryInterface
+import com.eman.weatherproject.database.room.FavouriteDao
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.test.runBlockingTest
 import org.junit.Before
 import org.junit.Rule
 import org.junit.runner.RunWith
@@ -53,5 +55,23 @@ import org.junit.runner.RunWith
         favouriteViewModel = FavouriteViewModel(repository)
     }
 
+//    @Test
+//    fun getCurrentWeather() = runBlockingTest{
+//        //Given
+//        favouriteViewModel.getAllAddresses()
+//        var data : FavouriteDao = WeatherForecast()
+//        //When
+//        val result = homeViewModel.root.first()
+//        when(result){
+//            is ApiState.Success -> {
+//                data = result.data
+//            }
+//            is ApiState.Failure -> {
+//            }
+//            else -> {
+//            }
+//        }
+        //Then
+       // MatcherAssert.assertThat(data , IsNull.notNullValue())
 
 }
