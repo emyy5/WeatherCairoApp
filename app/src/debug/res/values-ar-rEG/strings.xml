@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Weather Project</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="chanelName">Weather Project</string>
+    <string name="channel_description">لا يوجد تنبيهات لليوم</string>
+
+    <string name="home">الرئيسية</string>
+    <string name="favorites">المفضلات</string>
+    <string name="alerts">التنبيهات</string>
+    <string name="settings">الاعدادات</string>
+    <string name="language">اللغة</string>
+    <string name="location">الموقع</string>
+    <string name="unit">الوحدات</string>
+    <string name="notifications">الاشعارات</string>
+    <string name="alertNot">الاشعارات</string>
+    <string name="alertAlarm">المنبه</string>
+    <string name="favourite_details">التفاصيل المفضلات</string>
+
+    <string name="Celsius">°C</string>
+    <string name="Fahrenheit">°F</string>
+    <string name="Kelvin">°K</string>
+    <string name="windMeter">m/s</string>
+    <string name="windMile">M/h</string>
+
+    <string name="arabic">العربية</string>
+    <string name="english">الانجليزية</string>
+    <string name="standard">اساسى</string>
+    <string name="metric">قياسى</string>
+    <string name="imperial">امبراطورى</string>
+    <string name="gps">GPS</string>
+    <string name="maps">الخرائط</string>
+    <string name="enabled">مفعل</string>
+    <string name="disabled">غير مفعل</string>
+
+    <string name="metricDesc">(Temprature: Celsius &amp; Wind speed: meter/sec)</string>
+    <string name="standardDesc">(Temprature: Kelvin &amp; Wind speed: meter/sec)</string>
+    <string name="imperialDesc">(Temprature: Fahrenheit &amp; Wind speed: miles/hour)</string>
+    <string name="initial_setup">Initial setup</string>
+    <string name="ok">حسنا</string>
+    <string name="save">حفظ</string>
+    <string name="delete">حذف</string>
+    <string name="cancel">الغاء</string>
+    <string name="deleteMsg">هل تريد حقا ان تحذف هذا العنصر</string>
+    <string name="saveLocation">هل تريد ان تحفظ هذا الموقع ؟</string>
+    <string name="initial_setup_desc">حدد موقعك</string>
+    <string name="humidity">الرطوبة</string>
+    <string name="pressure">الضغط</string>
+    <string name="wind_speed">سرعة الرياح</string>
+    <string name="clouds">لسحب</string>
+    <string name="from">من</string>
+    <string name="to">الي</string>
+    <string name="warning">عندما تبطل الاشعارات لا يمكنك استلام التنبيهات!</string>
+    <string name="sorry">لا يمكن حفظ هذه التنبيه رجاءا تفعيل الاشعارات</string>
+    <string name="networkWarning">من فضلك تأكد من اتصالك بالشبكة!</string>
+    <string name="mapKey">AIzaSyBtBC-vEWQokUP6yPiNXQOD-LPk2ru10W4</string>
+    <string name="Location_Permission_Needed">يجب الحصول علي اذن الموقع</string>
+    <string name="This_app_needs_the_Location_permission_please_accept_to_use_location_functionality">This app needs the Location permission, please accept to use location functionality</string>
+
+</resources>
