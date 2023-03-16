@@ -1,6 +1,5 @@
 package com.eman.weatherproject.features.favourities.view
 
-import android.app.AlertDialog
 import android.app.Service
 import android.content.Context
 import android.net.ConnectivityManager
@@ -17,7 +16,6 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.eman.weatherproject.ApiState
 import com.eman.weatherproject.R
 import com.eman.weatherproject.RemoteSource
 import com.eman.weatherproject.database.model.WeatherAddress
@@ -29,10 +27,8 @@ import com.eman.weatherproject.databinding.FragmentFavouriteBinding
 import com.eman.weatherproject.features.favourities.viewmodel.FavoriteViewModelFactory
 import com.eman.weatherproject.features.favourities.viewmodel.FavouriteViewModel
 import com.eman.weatherproject.utilities.SHARED_PREFERENCES
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.collect
+
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
 
 class FavouriteFragment : Fragment(), FavClickInterface {
