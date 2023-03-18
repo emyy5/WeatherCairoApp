@@ -21,13 +21,13 @@ import org.junit.runner.RunWith
 
 @ExperimentalCoroutinesApi
 @RunWith(AndroidJUnit4::class)
-@Config(manifest= Bitmap.Config.NONE)
+//@Config(manifest= Bitmap.Config.NONE)
 
 class HomeViewModelTest {
 
     @ExperimentalCoroutinesApi
     @get:Rule
-    var mainCoroutineRule = MainCoroutineRule()
+   // var mainCoroutineRule = MainCoroutineRule()
 
     @get:Rule
     var instantExecutorRule = InstantTaskExecutorRule()

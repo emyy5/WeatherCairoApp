@@ -12,7 +12,7 @@ class FakeLocalSource(
     val weahterForecast: MutableList<WeatherForecast> = mutableListOf(),
     val alertData: MutableList<AlertData> = mutableListOf(),
 
-
+//
 ):LocalSourceInterface {
     override fun getMyAllAddress(): Flow<List<WeatherAddress>> = flow{
         emit(weatherList)
