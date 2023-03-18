@@ -47,8 +47,7 @@ class AlertsAdapter (private val lifeCycleScopeInput: CoroutineScope, var onClic
         val current = getItem(position)
 
         holder.binding.fromTimeAlert.text = current.address
-//        holder.binding.fromTimeAlert.text = current.startString
-//        holder.binding.fromDateAlert.text = (current.startDT as Date).toString()
+
 
         holder.binding.removeAlert.setOnClickListener {
             onClickHandler.removeAlertClick(current)

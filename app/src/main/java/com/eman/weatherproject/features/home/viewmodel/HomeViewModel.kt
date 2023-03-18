@@ -30,7 +30,6 @@ class HomeViewModel (val repo: Repository): ViewModel() {
             _weatherFromNetwork.emit(ApiState.onSuccess(response))
 
         }
-
     }
 
 

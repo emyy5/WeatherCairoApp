@@ -17,7 +17,7 @@ import androidx.navigation.Navigation
 import com.eman.weatherproject.database.room.LocalSource
 import com.eman.weatherproject.MainActivity
 import com.eman.weatherproject.R
-import com.eman.weatherproject.RemoteSource
+import com.eman.weatherproject.database.network.RemoteSource
 import com.eman.weatherproject.database.model.Settings
 import com.eman.weatherproject.databinding.FragmentSettingBinding
 import com.eman.weatherproject.database.repository.Repository

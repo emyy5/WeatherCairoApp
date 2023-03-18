@@ -7,10 +7,10 @@ enum class MyLanguage(val convertLanguage: String) {
     en ("en"), ar("ar")
 }
 //
-//const val NOTIFICATION_ID = "appName_notification_id"
-//const val NOTIFICATION_NAME = "appName"
-//const val NOTIFICATION_CHANNEL = "appName_channel_01"
-//const val NOTIFICATION_WORK = "appName_notification_work"
+const val NOTIFICATION_ID = "appName_notification_id"
+const val NOTIFICATION_NAME = "appName"
+const val NOTIFICATION_CHANNEL = "appName_channel_01"
+const val NOTIFICATION_WORK = "appName_notification_work"
 const val ENGLISH = true
 const val STANDARD = 0
 const val ENABLED = true

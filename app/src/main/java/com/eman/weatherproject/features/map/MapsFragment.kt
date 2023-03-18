@@ -17,7 +17,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.eman.weatherproject.database.room.LocalSource
 import com.eman.weatherproject.R
-import com.eman.weatherproject.RemoteSource
+import com.eman.weatherproject.database.network.RemoteSource
 import com.eman.weatherproject.database.model.Settings
 import com.eman.weatherproject.database.model.WeatherAddress
 import com.eman.weatherproject.features.favourities.viewmodel.FavoriteViewModelFactory
@@ -102,7 +102,8 @@ class MapsFragment : Fragment() {
         )
 
         favViewModelFactory = FavoriteViewModelFactory(
-            Repository.getInstance(RemoteSource.getInstance(),
+            Repository.getInstance(
+                RemoteSource.getInstance(),
                 LocalSource.getInstance(requireActivity()),
                 requireContext(), requireContext().getSharedPreferences(SHARED_PREFERENCES, Context.MODE_PRIVATE)
             )

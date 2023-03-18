@@ -104,7 +104,6 @@ class MyBroadcastReceiver : BroadcastReceiver() {
 
     override fun onReceive(context: Context?, intent: Intent?) {
 
-        Log.i(TAG, "onReceive: 1")
 
         val alertType = intent!!.getStringExtra("ALERT_TYPE")!!
         val longitude = intent.getStringExtra("ALERT_LONGITUDE")!!
@@ -144,7 +143,7 @@ class MyBroadcastReceiver : BroadcastReceiver() {
 
                 val response = deferredResponse.await()
 
-                var eventWeather = "No warnings at the moment."
+                var eventWeather = "There is oo warnings Now."
                 if (response.body()?.alerts != null) {
                     eventWeather = "Warning: " + (response.body()!!.alerts?.get(0)?.event ?: "EMPTY")
                 }

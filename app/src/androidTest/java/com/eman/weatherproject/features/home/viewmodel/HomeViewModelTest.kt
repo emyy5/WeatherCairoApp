@@ -21,15 +21,15 @@ import org.junit.runner.RunWith
 
 @ExperimentalCoroutinesApi
 @RunWith(AndroidJUnit4::class)
-//@Config(manifest= Bitmap.Config.NONE)
+@Config(manifest= Bitmap.Config.NONE)
 
 class HomeViewModelTest {
 
     @ExperimentalCoroutinesApi
     @get:Rule
-   // var mainCoroutineRule = MainCoroutineRule()
+    var mainCoroutineRule = MainCoroutineRule()
 
-  //  @get:Rule
+    @get:Rule
     var instantExecutorRule = InstantTaskExecutorRule()
 
 
@@ -64,16 +64,16 @@ class HomeViewModelTest {
             homeViewModel.getWholeWeather(21.3,32.4,"rrr")
             var data : WeatherForecast = weatherResponse
             //When
-          //  val result = homeViewModel.root.first()
-           // when(result){
-//                is ApiState.onSuccess -> {
-//                    data = result.data
-//                }
-//                is ApiState.onFail -> {
-//                }
-//                else -> {
-//                }
-//            }
+            val result = homeViewModel.root.first()
+            when(result){
+                is ApiState.onSuccess -> {
+                    data = result.data
+                }
+                is ApiState.onFail -> {
+                }
+                else -> {
+                }
+            }
             //Then
             MatcherAssert.assertThat(data , IsNull.notNullValue())
         }

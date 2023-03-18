@@ -26,7 +26,7 @@ import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.eman.weatherproject.R
-import com.eman.weatherproject.RemoteSource
+import com.eman.weatherproject.database.network.RemoteSource
 import com.eman.weatherproject.database.model.AlertData
 import com.eman.weatherproject.database.repository.Repository
 import com.eman.weatherproject.database.room.LocalSource
@@ -38,7 +38,6 @@ import com.eman.weatherproject.utilities.Converters
 import com.eman.weatherproject.utilities.LocaleHelper
 import com.eman.weatherproject.utilities.SHARED_PREFERENCES
 import kotlinx.coroutines.*
-import kotlinx.coroutines.flow.collect
 import java.util.*
 
 

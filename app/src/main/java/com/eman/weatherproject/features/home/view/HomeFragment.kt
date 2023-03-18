@@ -21,7 +21,7 @@ import com.eman.weatherproject.database.room.LocalSource
 import com.eman.weatherproject.features.home.viewmodel.HomeViewModel
 import com.eman.weatherproject.features.home.viewmodel.HomeViewModelFactory
 import com.eman.weatherproject.R
-import com.eman.weatherproject.RemoteSource
+import com.eman.weatherproject.database.network.RemoteSource
 import com.eman.weatherproject.database.model.Settings
 import com.eman.weatherproject.database.model.WeatherForecast
 import com.eman.weatherproject.databinding.FragmentHomeBinding

@@ -1,9 +1,6 @@
-package com.eman.weatherproject
+package com.eman.weatherproject.database.network
 
 import com.eman.weatherproject.database.model.WeatherForecast
-import com.eman.weatherproject.database.network.API_Interface
-import com.eman.weatherproject.database.network.RemoteSourceInterface
-import com.eman.weatherproject.database.network.RetrofitHelper
 
 
 private const val TAG = "RemoteSource"
@@ -33,26 +30,3 @@ class RemoteSource: RemoteSourceInterface {
         }
     }
 }
-//
-//   fun getCurrentWeatherWithLocationInRepoFlow(
-//        lat: Double,
-//        long: Double,
-//        unit: String,
-//        lang: String
-//    ) = flow {
-//        coroutineScope {
-//            val serviceObj = RetrofitHelper.getInstance()
-//            val response = serviceObj.getTheWholeWeather(
-//                lat,
-//                long,
-//                unit,
-//                "minutely",
-//                lang,
-//                "375d11598481406538e244d548560243"
-//
-//            )
-//            MyCurrentWeather = response
-//            emit(MyCurrentWeather)
-//        }
-
-//}

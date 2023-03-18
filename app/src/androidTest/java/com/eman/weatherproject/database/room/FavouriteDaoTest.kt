@@ -7,6 +7,7 @@ import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.filters.SmallTest
 import com.eman.weatherproject.database.model.WeatherAddress
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.test.runBlockingTest
 import org.hamcrest.CoreMatchers.`is`
 import org.hamcrest.MatcherAssert.assertThat
@@ -29,68 +30,73 @@ class FavouriteDaoTest {
     var instanceExecuteRule = InstantTaskExecutorRule()
     private lateinit var database: WeatherDb
     lateinit var dao: FavouriteDao
+
     @Before
     fun setUp() {
-    database = Room.inMemoryDatabaseBuilder( ApplicationProvider.getApplicationContext(),
-        WeatherDb::class.java)
-        .allowMainThreadQueries().build()
-dao=database.addressesDao()
+        database = Room.inMemoryDatabaseBuilder(
+            ApplicationProvider.getApplicationContext(),
+            WeatherDb::class.java
+        )
+            .allowMainThreadQueries().build()
+        dao = database.addressesDao()
     }
-       @After
-    fun tearDown()
-       {
-           database.close()
-        }
-     @Test
+
+    @After
+    fun tearDown() {
+        database.close()
+    }
+
+    @Test
     fun insertFavAddress() =
         runBlockingTest {
 
-              val data1 = WeatherAddress( "Ismailia", 32.00,  32.00)
+            val data1 = WeatherAddress("Ismailia", 32.00, 32.00)
             //when
-             dao.insertFavAddress(data1)
+            dao.insertFavAddress(data1)
 
             //Then
-             val result = dao.getAllFav()
-           assertThat(result, IsNull.notNullValue())
-           //assertThat(result).contains(data1)
+            val result = dao.getAllFav()
+            assertThat(result, IsNull.notNullValue())
+            //assertThat(result).contains(data1)
             //assert(result.value(data1))
 
 
         }
-    @Test
-    fun myAllAddress_item() {
-        val data1= WeatherAddress( "Ismailia", 32.00,  32.00)
-        val data2= WeatherAddress("Ismailia",  32.00,  32.00)
-        val data3= WeatherAddress( "Ismailia",  32.00, 32.00)
-    dao.insertFavAddress(data1)
-    dao.insertFavAddress(data2)
-    dao.insertFavAddress(data3)
-    //when
-val result= dao.getAllFav()
-    //Then
-    assertThat(result.value, Is.`is`(3))
 
-}
-        @Test
-    fun deleteFavAddress() = runBlockingTest {
-        val data1 = WeatherAddress("hghmm",32.0,32.0)
+    @Test
+    fun myAllAddress_item() = runBlockingTest {
+        val data1 = WeatherAddress("Ismailia", 32.00, 32.00)
+        val data2 = WeatherAddress("Ismailia", 32.00, 32.00)
+        val data3 = WeatherAddress("Ismailia", 32.00, 32.00)
         dao.insertFavAddress(data1)
-        val outComeData=dao.getAllFav()
+        dao.insertFavAddress(data2)
+        dao.insertFavAddress(data3)
+        //when
+        val result = dao.getAllFav().first()
+        //Then
+        assertThat(result.size, Is.`is`(3))
+
+    }
+
+    @Test
+    fun deleteFavAddress() = runBlockingTest {
+        val data1 = WeatherAddress("hghmm", 32.0, 32.0)
+        dao.insertFavAddress(data1)
+        val outComeData = dao.getAllFav()
 
         //when
         dao.deleteFavAddress(data1)
         //Then
-        val result= dao.getAllFav()
-        assertThat(result.value, IsEmptyCollection.empty())
-        assertThat(result.value, `is`(3))
+        val result = dao.getAllFav().first()
+        assertThat(result.size, `is`(3))
 
-         dao.insertFavAddress(data1)
+        dao.insertFavAddress(data1)
 
-            //Then
-           // val result = dao.getAllFav()
-
-
-    }
+        //Then
+        // val result = dao.getAllFav()
 
 
     }
+
+
+}

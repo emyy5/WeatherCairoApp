@@ -11,6 +11,7 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.*
+import com.eman.weatherproject.database.network.RemoteSource
 import com.eman.weatherproject.database.repository.Repository
 import com.eman.weatherproject.database.room.LocalSource
 import com.eman.weatherproject.features.alert.view.AlertManager
@@ -18,7 +19,6 @@ import com.eman.weatherproject.features.alert.viewmodel.AlertViewModel
 import com.eman.weatherproject.features.alert.viewmodel.AlertViewModelFactory
 import com.eman.weatherproject.utilities.SHARED_PREFERENCES
 import com.google.android.material.navigation.NavigationView
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {

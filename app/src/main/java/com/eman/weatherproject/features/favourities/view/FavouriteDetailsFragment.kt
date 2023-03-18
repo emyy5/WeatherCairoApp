@@ -15,7 +15,7 @@ import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.eman.weatherproject.R
-import com.eman.weatherproject.RemoteSource
+import com.eman.weatherproject.database.network.RemoteSource
 import com.eman.weatherproject.database.repository.Repository
 import com.eman.weatherproject.database.room.LocalSource
 import com.eman.weatherproject.databinding.FragmentFavouriteDetailsBinding

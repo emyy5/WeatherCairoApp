@@ -12,6 +12,7 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runBlockingTest
 import org.junit.Before
 import org.junit.Rule
+import org.junit.Test
 import org.junit.runner.RunWith
 
 @ExperimentalCoroutinesApi
@@ -55,23 +56,9 @@ import org.junit.runner.RunWith
         favouriteViewModel = FavouriteViewModel(repository)
     }
 
-//    @Test
-//    fun getCurrentWeather() = runBlockingTest{
-//        //Given
-//        favouriteViewModel.getAllAddresses()
-//        var data : FavouriteDao = WeatherForecast()
-//        //When
-//        val result = homeViewModel.root.first()
-//        when(result){
-//            is ApiState.Success -> {
-//                data = result.data
-//            }
-//            is ApiState.Failure -> {
-//            }
-//            else -> {
-//            }
-//        }
-        //Then
-       // MatcherAssert.assertThat(data , IsNull.notNullValue())
+@Test
+fun deleteFavourite(){
+    favouriteViewModel = FavouriteViewModel(repository)
+}
 
 }

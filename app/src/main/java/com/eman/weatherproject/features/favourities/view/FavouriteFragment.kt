@@ -18,7 +18,7 @@ import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.eman.weatherproject.R
-import com.eman.weatherproject.RemoteSource
+import com.eman.weatherproject.database.network.RemoteSource
 import com.eman.weatherproject.database.model.WeatherAddress
 import com.eman.weatherproject.database.model.WeatherForecast
 import com.eman.weatherproject.database.repository.Repository
